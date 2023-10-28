@@ -94,8 +94,8 @@ def bicep_curl():
                 pass
 
             
-            cv2.rectangle(image, (0,0), (1024,73), (10,10,10), -1)
-            cv2.putText(image, 'Left=' + str(left_count) + '    Right=' + str(right_count),
+            cv2.rectangle(image, (0,0), (1024,73), (128, 128, 128), -1)
+            cv2.putText(image, 'Left:' + str(left_count) + '    Right:' + str(right_count),
                             (10,60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255,255,255), 2, cv2.LINE_AA)
 
             

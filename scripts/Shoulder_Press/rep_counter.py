@@ -68,14 +68,30 @@ def rep_counter():
                 pass
 
 
-            cv2.rectangle(image, (0, 0), (225, 73), (245, 117, 16), -1)
+            cv2.rectangle(image, (0,0), (1024,73), (128, 128, 128), -1)
+            # Center-top position for "REPS" and counter
+            text = 'REPS'
+            text_size = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)[0]
+            text_x = (image.shape[1] - text_size[0]) // 2
+            cv2.putText(image, text, (text_x, 12), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
 
-            cv2.putText(image, 'REPS', (15, 12), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
-            cv2.putText(image, str(counter), (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
+            text = str(counter)
+            text_size = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 2, 2)[0]
+            text_x = (image.shape[1] - text_size[0]) // 2
+            cv2.putText(image, text, (text_x, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
 
-            
-            cv2.putText(image, 'STAGE', (65, 12), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
-            cv2.putText(image, stage, (60, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
+            # Center-bottom position for "STAGE"
+            text = 'STAGE'
+            text_size = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)[0]
+            text_x = (image.shape[1] - text_size[0]) // 2
+            text_y = image.shape[0] - 12
+            cv2.putText(image, text, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+
+            # Center-bottom position for stage
+            text_size = cv2.getTextSize(stage, cv2.FONT_HERSHEY_SIMPLEX, 2, 2)[0]
+            text_x = (image.shape[1] - text_size[0]) // 2
+            text_y = image.shape[0] - 60
+            cv2.putText(image, stage, (text_x, text_y), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
 
             
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,

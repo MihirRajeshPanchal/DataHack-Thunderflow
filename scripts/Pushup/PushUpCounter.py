@@ -66,21 +66,21 @@ def pushups():
             
             
             if form == 1:
-                cv2.rectangle(img, (580, 50), (600, 380), (0, 255, 0), 3)
-                cv2.rectangle(img, (580, int(bar)), (600, 380), (0, 255, 0), cv2.FILLED)
+                cv2.rectangle(img, (580, 50), (600, 380), (128, 128, 128), 3)
+                cv2.rectangle(img, (580, int(bar)), (600, 380), (128, 128, 128), cv2.FILLED)
                 cv2.putText(img, f'{int(per)}%', (565, 430), cv2.FONT_HERSHEY_PLAIN, 2,
-                            (255, 0, 0), 2)
+                            (255, 255, 255), 2)
 
 
             
-            cv2.rectangle(img, (0, 380), (100, 480), (0, 255, 0), cv2.FILLED)
+            cv2.rectangle(img, (0, 380), (100, 480), (128, 128, 128), cv2.FILLED)
             cv2.putText(img, str(int(count)), (25, 455), cv2.FONT_HERSHEY_PLAIN, 5,
-                        (255, 0, 0), 5)
+                        (255, 255, 255), 5)
             
             
-            cv2.rectangle(img, (500, 0), (640, 40), (255, 255, 255), cv2.FILLED)
+            cv2.rectangle(img, (500, 0), (640, 40), (128, 128, 128), cv2.FILLED)
             cv2.putText(img, feedback, (500, 40 ), cv2.FONT_HERSHEY_PLAIN, 2,
-                        (0, 255, 0), 2)
+                        (255, 255, 255), 2)
 
             
         image_placeholder.image(img, channels="BGR", use_column_width=True)
