@@ -6,6 +6,7 @@ import mediapipe as mp
 from scripts.Squat.squat import ProcessFrame
 from scripts.Squat.thresholds import get_thresholds_beginner, get_thresholds_pro
 from scripts.Shoulder_Press.rep_counter import rep_counter
+from model.GestureDetector.handdetect import handDetect
 
 def dashboard():
     st.subheader("Dashboard")
@@ -19,6 +20,7 @@ def calorie_counter():
 
 def music():
     st.subheader("Music")
+    handDetect()
 
 def chat_recommendation():
     st.subheader("Chat Recommendation")
