@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
-
+import streamlit as st
 
 def handDetect():
 
@@ -10,12 +10,13 @@ def handDetect():
     hands = mpHands.Hands(max_num_hands=1, min_detection_confidence=0.7)
     mpDraw = mp.solutions.drawing_utils
 
-    model = load_model('model')
+    model = load_model('model/GestureDetector/model')
 
-    f = open('gesture.names', 'r')
+    f = open('model/GestureDetector/gesture.names', 'r')
     classNames = f.read().split('\n')
     f.close()
 
+    image_placeholder = st.empty()
     cap = cv2.VideoCapture(0)
     while True:
         _, frame = cap.read()
@@ -45,7 +46,7 @@ def handDetect():
   
         cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
 
-        cv2.imshow("Output is :", frame) 
+        image_placeholder.image(frame, channels="BGR", use_column_width=True)
 
         if cv2.waitKey(1) == ord('q'):
             break
@@ -54,5 +55,3 @@ def handDetect():
     cap.release()
 
     cv2.destroyAllWindows()
-
-handDetect()
