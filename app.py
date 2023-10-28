@@ -116,9 +116,9 @@ def calorie_counter():
         model = pickle.load(model_file)
     image_path = 'data/1.jpg'
     image = cv2.imread(image_path)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # Convert to RGB
-    image = cv2.resize(image, (120, 120))  # Resize to match model's input dimensions
-    image = image / 255.0  # Normalize the pixel values
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
+    image = cv2.resize(image, (120, 120))  
+    image = image / 255.0  
     predictions = model.predict(np.array([image]))
     predicted_class = np.argmax(predictions)
     class_labels = list(food_calories.keys())
@@ -133,6 +133,30 @@ def music():
 
 def chat_recommendation():
     st.subheader("Chat Recommendation")
+
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    if prompt := st.chat_input("What is up?"):
+        
+        st.chat_message("user").markdown(prompt)
+        
+        st.session_state.messages.append({"role": "user", "content": prompt})
+
+        # change prompt
+        prompt = prompt.title()
+
+        response = f"Echo: {prompt}"
+        
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        
+        st.session_state.messages.append({"role": "assistant", "content": response})
+
 
 def bicep_curler():
     st.subheader("Bicep Curler")
