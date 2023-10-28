@@ -1,8 +1,8 @@
 import time
 import cv2
 import numpy as np
-from utils import find_angle, get_landmark_features, draw_text, draw_dotted_line
-from thresholds import get_thresholds_beginner, get_thresholds_pro
+from .utils import find_angle, get_landmark_features, draw_text, draw_dotted_line
+from .thresholds import get_thresholds_beginner, get_thresholds_pro
 import mediapipe as mp
 class ProcessFrame:
     def __init__(self, thresholds, flip_frame = False):
@@ -551,29 +551,29 @@ class ProcessFrame:
             
         return frame, play_sound
 
-thresholds = get_thresholds_beginner()
-processor = ProcessFrame(thresholds, flip_frame=True)  # Set flip_frame to True if you need to flip the frame
+# thresholds = get_thresholds_beginner()
+# processor = ProcessFrame(thresholds, flip_frame=True)  # Set flip_frame to True if you need to flip the frame
 
-# Open a video capture object (you can replace '0' with your video file path)
-cap = cv2.VideoCapture(0)
-mp_pose = mp.solutions.pose
+# # Open a video capture object (you can replace '0' with your video file path)
+# cap = cv2.VideoCapture(0)
+# mp_pose = mp.solutions.pose
 
-pose = mp_pose.Pose()
+# pose = mp_pose.Pose()
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-    # Process the frame using the ProcessFrame instance
-    processed_frame, play_sound = processor.process(frame, pose)
+# while True:
+#     ret, frame = cap.read()
+#     if not ret:
+#         break
+#     # Process the frame using the ProcessFrame instance
+#     processed_frame, play_sound = processor.process(frame, pose)
 
-    # Display the processed frame
-    cv2.imshow('Squat Posture Analysis', processed_frame)
+#     # Display the processed frame
+#     cv2.imshow('Squat Posture Analysis', processed_frame)
 
-    # Check for key press to exit the loop (e.g., press 'q' to quit)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+#     # Check for key press to exit the loop (e.g., press 'q' to quit)
+#     if cv2.waitKey(1) & 0xFF == ord('q'):
+#         break
 
-# Release the video capture object and close the OpenCV window
-cap.release()
-cv2.destroyAllWindows()
+# # Release the video capture object and close the OpenCV window
+# cap.release()
+# cv2.destroyAllWindows()
