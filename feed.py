@@ -12,8 +12,9 @@ def feed_streamlit():
     # col3, col4 = st.columns(2)
     col1,col2,col3,col4 = st.columns(4)
     with col1:
-        st.subheader("Pushups")
+        st.text("Pushups")
         st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.text("Reps : 20")
         if st.button("Like",key=1):
             st.toast('Picture Liked', icon='💓')
         if st.button("Challenge",key=5):
@@ -21,24 +22,27 @@ def feed_streamlit():
 
             
     with col2:
-        st.subheader("Squats")
+        st.text("Squats")
         st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.text("Reps : 30")
         if st.button("Like",key=2):
             st.toast('Picture Liked', icon='💓')
         if st.button("Challenge",key=6):
             pushups()
 
     with col3:
-        st.subheader("Shoulder Press")
+        st.text("Shoulder Press")
         st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.text("Reps : 15")
         if st.button("Like",key=3):
             st.toast('Picture Liked', icon='💓')
         if st.button("Challenge",key=7):
             pushups()
 
     with col4:
-        st.subheader("Bicep Curler")
+        st.text("Bicep Curler")
         st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.text("Reps : 50")
         if st.button("Like",key=4):
             st.toast('Picture Liked', icon='💓')
         if st.button("Challenge",key=8):

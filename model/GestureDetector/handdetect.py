@@ -1,10 +1,8 @@
 import cv2
 import numpy as np
 import mediapipe as mp
-import tensorflow as tf
-from tensorflow.keras.model import load_model
+from tensorflow.keras.models import load_model
 import streamlit as st
-import pyautogui as pya
 
 def handDetect():
 
@@ -14,7 +12,7 @@ def handDetect():
 
     model = load_model('model/GestureDetector/model')
 
-    f = open('gesture.names', 'r')
+    f = open('model/GestureDetector/gesture.names', 'r')
     classNames = f.read().split('\n')
     f.close()
 
@@ -23,7 +21,7 @@ def handDetect():
     while True:
         _, frame = cap.read()
 
-        x, y, c = frame.shapes
+        x, y, c = frame.shape
 
         frame = cv2.flip(frame, 1)
         framergb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -45,16 +43,6 @@ def handDetect():
                 classID = np.argmax(prediction)
                 className = classNames[classID]
 
-        if className == 'thumbs up':
-            pya.press('volumeup')
-        elif className == 'thumbs down':
-            pya.press('volumedown')
-        elif className == 'stop':
-            pya.press('space') 
-        elif className == 'peace':
-            pya.hotkey('ctrl', 'right') 
-        elif className == 'rock':
-            pya.hotkey('ctrl', 'left')
   
         cv2.putText(frame, className, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
 
@@ -67,5 +55,3 @@ def handDetect():
     cap.release()
 
     cv2.destroyAllWindows()
-
-handDetect()
