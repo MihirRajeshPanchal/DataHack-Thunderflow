@@ -1,13 +1,44 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import scripts.Pushup.posemodule as pm
+import posemodule as pm
 import streamlit as st
+import os
 from ttsvoice import tts
+
+
+def create_video(output_path, frame_folder):
+    image_files = os.listdir(frame_folder)
+    image_files.sort()
+
+    
+    if len(image_files) == 0:
+        print("No image frames found in the specified folder.")
+        return
+
+    
+    first_frame = cv2.imread(os.path.join(frame_folder, image_files[0]))
+    height, width, layers = first_frame.shape
+
+    
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  
+    video = cv2.VideoWriter(output_path, fourcc, 30, (width, height))
+
+    for image_file in image_files:
+        image_path = os.path.join(frame_folder, image_file)
+        frame = cv2.imread(image_path)
+        video.write(frame)
+
+    video.release()
+    cv2.destroyAllWindows()
 
 def pushups():
     image_placeholder = st.empty()
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("6.mp4")
+    frame_folder = "frames"  # Create a folder to store frames
+    if not os.path.exists(frame_folder):
+        os.makedirs(frame_folder)
+    frame_count=0
     detector = pm.poseDetector()
     count = 0
     direction = 0
@@ -84,9 +115,16 @@ def pushups():
 
             
         image_placeholder.image(img, channels="BGR", use_column_width=True)
-        # cv2.imshow('Pushup counter', img)
+        frame_filename = f"frame_{frame_count:04d}.png"
+        frame_path = os.path.join(frame_folder, frame_filename)
+        cv2.imwrite(frame_path, img)
+
+        frame_count += 1
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
             
     cap.release()
     cv2.destroyAllWindows()
+# pushups()
+create_video("output2.mp4","frames")
+
