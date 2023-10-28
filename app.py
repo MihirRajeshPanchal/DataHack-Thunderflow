@@ -61,5 +61,10 @@ def main():
     elif option=="Recommendation":
         chat_recommendation()
 
+st.set_page_config(
+    page_title="Thunderflow",
+    page_icon="💫",
+    layout="wide", 
+)
 if __name__ == '__main__':
     main()
