@@ -12,6 +12,7 @@ from model.GestureDetector.handdetect import handDetect
 from dashboard import dashboard_streamlit
 from feed import feed_streamlit
 from ttsvoice import tts
+from leaderboard import leaderboard_streamlit
 import pickle
 import numpy as np
 
@@ -127,6 +128,10 @@ def calorie_counter():
     print(f"Your food {predicted_label} has approximately {calorie_value} calories")
     st.write(predicted_label,calorie_value)
 
+def leaderboard():
+    st.subheader("Leaderboard")
+    leaderboard_streamlit()
+
 def music():
     st.subheader("Music")
     handDetect()
@@ -186,7 +191,7 @@ def squat_analyzer(on):
 
 def main():
     st.sidebar.header('Options')
-    option = st.sidebar.selectbox('Select an Option', ('Dashboard','Feed','Squat Analyzer','Shoulder Press','Bicep Curler','Push Ups','Calorie Counter','Music','Recommendation'))
+    option = st.sidebar.selectbox('Select an Option', ('Dashboard','Feed','Squat Analyzer','Shoulder Press','Bicep Curler','Push Ups','Calorie Counter','Leaderboard','Recommendation','Music'))
     st.sidebar.markdown('Made by Thunderflow for DataHack 2.0')
 
     if option=="Dashboard":
@@ -203,6 +208,8 @@ def main():
         bicep_curler()
     elif option=="Push Ups":
         push_ups()
+    elif option=="Leaderboard":
+        leaderboard()
     elif option=="Calorie Counter":
         calorie_counter()
     elif option=="Music":
