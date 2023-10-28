@@ -98,7 +98,7 @@ def bicep_curl():
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
 
             image_placeholder.image(image, channels="BGR", use_column_width=True)
-            cv2.imshow('MediaPipe feed', image)
+            # cv2.imshow('MediaPipe feed', image)
 
             k = cv2.waitKey(30) & 0xff  
             if cv2.waitKey(10) & 0xFF == ord('q'):
