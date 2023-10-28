@@ -6,10 +6,12 @@ import mediapipe as mp
 from scripts.Squat.squat import ProcessFrame
 from scripts.Squat.thresholds import get_thresholds_beginner, get_thresholds_pro
 from scripts.Shoulder_Press.rep_counter import rep_counter
+from scripts.BicepCurler.bicep import bicep_curl
 from model.GestureDetector.handdetect import handDetect
-
+from dashboard import dashboard_streamlit
 def dashboard():
     st.subheader("Dashboard")
+    dashboard_streamlit()
 
 def shoulder_press():
     st.subheader("Shoulder Press")
@@ -24,6 +26,10 @@ def music():
 
 def chat_recommendation():
     st.subheader("Chat Recommendation")
+
+def bicep_curler():
+    st.subheader("Bicep Curler")
+    bicep_curl()
 
 def squat_analyzer():
     st.subheader('Squat Posture Analysis')
@@ -45,7 +51,7 @@ def squat_analyzer():
 
 def main():
     st.sidebar.header('Options')
-    option = st.sidebar.selectbox('Select an Option', ('Dashboard','Squat Analyzer','Shoulder Press','Calorie Counter','Music','Recommendation'))
+    option = st.sidebar.selectbox('Select an Option', ('Dashboard','Squat Analyzer','Shoulder Press','Bicep Curler','Calorie Counter','Music','Recommendation'))
     st.sidebar.markdown('Made by Thunderflow for DataHack 2.0')
 
     if option=="Dashboard":
@@ -54,6 +60,8 @@ def main():
         squat_analyzer()
     elif option=="Shoulder Press":
         shoulder_press()
+    elif option=="Bicep Curler":
+        bicep_curler()
     elif option=="Calorie Counter":
         calorie_counter()
     elif option=="Music":
