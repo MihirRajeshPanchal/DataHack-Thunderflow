@@ -2,18 +2,17 @@ import cv2
 import streamlit as st
 import openai
 import requests
-from streamlit_chat import message
-from streamlit.components.v1 import html
 import mediapipe as mp
 from scripts.Squat.squat import ProcessFrame
-import threading
 from scripts.Squat.thresholds import get_thresholds_beginner, get_thresholds_pro
+from scripts.Shoulder_Press.rep_counter import rep_counter
 
 def dashboard():
     st.subheader("Dashboard")
 
 def shoulder_press():
     st.subheader("Shoulder Press")
+    rep_counter()
 
 def calorie_counter():
     st.subheader("Calorie Counter")
