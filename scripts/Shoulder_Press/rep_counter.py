@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import numpy as np
 import streamlit as st
+from ttsvoice import tts
 
 def rep_counter():
     def calculate_angle(a, b, c):
@@ -60,7 +61,8 @@ def rep_counter():
                 if angle < 30 and stage == 'down':
                     stage = "up"
                     counter += 1
-                    print(counter)
+                    res="Repppppppppppp"+str(counter)
+                    tts(res)
 
             except:
                 pass

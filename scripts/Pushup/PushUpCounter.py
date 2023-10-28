@@ -3,6 +3,7 @@ import mediapipe as mp
 import numpy as np
 import scripts.Pushup.posemodule as pm
 import streamlit as st
+from ttsvoice import tts
 
 def pushups():
     image_placeholder = st.empty()
@@ -48,7 +49,7 @@ def pushups():
                             direction = 1
                     else:
                         feedback = "Fix Form"
-                        
+                        tts(feedback)
                 if per == 100:
                     if elbow > 160 and shoulder > 40 and hip > 160:
                         feedback = "Down"
@@ -57,7 +58,7 @@ def pushups():
                             direction = 0
                     else:
                         feedback = "Fix Form"
-                            
+                        tts(feedback)
                     
                         
         

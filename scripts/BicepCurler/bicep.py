@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 import streamlit as st
-
+from ttsvoice import tts
 def bicep_curl():
     def calc_angle(a,b,c): 
         ''' Arguments:
@@ -79,12 +79,16 @@ def bicep_curl():
                 if left_angle < 50 and left_flag=='down':
                     left_count += 1
                     left_flag = 'up'
+                    left_res="Left Repppppppppppp"+str(left_count)
+                    tts(left_res)
 
                 if right_angle > 160:
                     right_flag = 'down'
                 if right_angle < 50 and right_flag=='down':
                     right_count += 1
                     right_flag = 'up'
+                    right_res="Right Repppppppppppp"+str(right_count)
+                    tts(right_res)
                 
             except:
                 pass

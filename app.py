@@ -11,6 +11,7 @@ from scripts.Pushup.PushUpCounter import pushups
 from model.GestureDetector.handdetect import handDetect
 from dashboard import dashboard_streamlit
 from feed import feed_streamlit
+from ttsvoice import tts
 import pickle
 import numpy as np
 
@@ -112,11 +113,6 @@ def calorie_counter():
     }
 
     with open('data/foodcalorie.pkl', 'rb') as model_file:
-        loaded_model = pickle.load(model_file)
-
-    loaded_model.save('foodcalorie.h5')
-
-    with open('data/foodcalorie.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
     image_path = 'data/1.jpg'
     image = cv2.imread(image_path)
@@ -142,19 +138,23 @@ def bicep_curler():
     st.subheader("Bicep Curler")
     bicep_curl()
 
-def squat_analyzer():
+def squat_analyzer(on):
     st.subheader('Squat Posture Analysis')
     cap = cv2.VideoCapture(0)
     image_placeholder = st.empty()
     mp_pose = mp.solutions.pose
     pose = mp_pose.Pose()
 
+    if on:
+        threshold=get_thresholds_beginner()
+    else:
+        threshold=get_thresholds_pro()
     while True:
         ret, frame = cap.read()
         if not ret:
             break
-        processor = ProcessFrame(thresholds=get_thresholds_beginner(), flip_frame=True)
-        processed_frame, play_sound = processor.process(frame, pose)
+        processor = ProcessFrame(thresholds=threshold, flip_frame=True)
+        processed_frame, play_sound = processor.process(frame, pose) 
         image_placeholder.image(processed_frame, channels="BGR", use_column_width=True)
 
         
@@ -171,7 +171,8 @@ def main():
         res = feed_streamlit()
         option=res
     elif option=="Squat Analyzer":
-        squat_analyzer()
+        on = st.sidebar.toggle('Activate Pro Mode')
+        squat_analyzer(on)
     elif option=="Shoulder Press":
         shoulder_press()
     elif option=="Bicep Curler":
