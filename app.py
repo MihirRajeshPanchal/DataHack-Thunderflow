@@ -1,6 +1,5 @@
 import cv2
 import streamlit as st
-import openai
 import requests
 import mediapipe as mp
 from scripts.Squat.squat import ProcessFrame
