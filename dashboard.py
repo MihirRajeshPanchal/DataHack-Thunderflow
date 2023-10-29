@@ -181,6 +181,7 @@ def dashboard_streamlit():
     df = pd.read_csv("data\exercise_dataset.csv")
 
     df = df.drop(columns=['Age', 'Gender', 'Duration', 'Weather Conditions'])
+    df = df[~df.Exercise.isin(['Exercise 1','Exercise 2','Exercise 3','Exercise 4','Exercise 5'])]
 
     dates_30 = pd.date_range(start="2023-10-01", end="2023-10-31")
     dates_90 = pd.date_range(start="2023-08-01", end="2023-10-31")
