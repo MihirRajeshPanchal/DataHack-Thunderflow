@@ -13,7 +13,7 @@ def feed_streamlit():
     col1,col2,col3,col4 = st.columns(4)
     with col1:
         st.text("Pushups")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image(r"data/Films & TV 29-10-2023 10_32_03.png")
         st.text("Reps : 20")
         if st.button("Like",key=1):
             st.toast('Picture Liked', icon='💓')
@@ -23,7 +23,7 @@ def feed_streamlit():
             
     with col2:
         st.text("Squats")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image(r"data/Films & TV 29-10-2023 10_30_25.png")
         st.text("Reps : 30")
         if st.button("Like",key=2):
             st.toast('Picture Liked', icon='💓')
@@ -32,16 +32,16 @@ def feed_streamlit():
 
     with col3:
         st.text("Shoulder Press")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image(r"data/Films & TV 29-10-2023 10_31_20.png")
         st.text("Reps : 15")
         if st.button("Like",key=3):
             st.toast('Picture Liked', icon='💓')
         if st.button("Challenge",key=7):
             pushups()
-
+    
     with col4:
         st.text("Bicep Curler")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
+        st.image(r"data/Films & TV 29-10-2023 10_32_30.png")
         st.text("Reps : 50")
         if st.button("Like",key=4):
             st.toast('Picture Liked', icon='💓')
