@@ -36,13 +36,40 @@ def squat_analyzer(on):
         
     cap.release()
 
+
+
+
+
+
 def take_pic():
     time.sleep(3)
 
 def detection():
 
 
-    picture = st.camera_input("Take a picture" , on_change = take_pic)
+    # picture = st.camera_input("Take a picture" , on_change = take_pic)
+
+
+    # Set the delay in seconds
+    delay = 5
+    
+    # Display the camera input widget
+    picture = st.camera_input("Take a picture")
+    
+    # Check if the user has clicked the picture button
+    if picture is not None:
+      # Display a message that the picture will be taken after the delay
+      st.write(f"Picture will be taken in {delay} seconds...")
+      
+      # Loop through the delay countdown
+      for i in range(delay, 0, -1):
+        # Update the timer on the app
+        st.write(i)
+        # Wait for one second
+        time.sleep(1)
+      
+      # Display the picture after the delay
+    st.image(picture)
     
     if picture:
 
