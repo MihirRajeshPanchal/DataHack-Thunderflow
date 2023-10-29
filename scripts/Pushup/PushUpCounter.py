@@ -3,17 +3,11 @@ import mediapipe as mp
 import numpy as np
 import scripts.Pushup.posemodule as pm
 import streamlit as st
-import os
 from ttsvoice import tts
-
 
 def pushups():
     image_placeholder = st.empty()
     cap = cv2.VideoCapture(0)
-    frame_folder = "frames"  # Create a folder to store frames
-    if not os.path.exists(frame_folder):
-        os.makedirs(frame_folder)
-    frame_count=0
     detector = pm.poseDetector()
     count = 0
     direction = 0
@@ -90,11 +84,9 @@ def pushups():
 
             
         image_placeholder.image(img, channels="BGR", use_column_width=True)
-
-        frame_count += 1
+        # cv2.imshow('Pushup counter', img)
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
             
     cap.release()
     cv2.destroyAllWindows()
-
