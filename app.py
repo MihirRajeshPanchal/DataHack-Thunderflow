@@ -7,6 +7,7 @@ from scripts.Squat.thresholds import get_thresholds_beginner, get_thresholds_pro
 from scripts.Shoulder_Press.rep_counter import rep_counter
 from scripts.BicepCurler.bicep import bicep_curl
 from scripts.Pushup.PushUpCounter import pushups
+from scripts.Detection.detection import detection
 from model.GestureDetector.handdetect import handDetect
 from dashboard import dashboard_streamlit
 from feed import feed_streamlit
@@ -255,7 +256,7 @@ def squat_analyzer(on):
 
 def main():
     st.sidebar.header('Options')
-    option = st.sidebar.selectbox('Select an Option', ('Dashboard','Feed','Squat Analyzer','Shoulder Press','Bicep Curler','Push Ups','Calorie Counter','Leaderboard','Recommendation','Music'))
+    option = st.sidebar.selectbox('Select an Option', ('Dashboard','Feed','Detection and Rep Counting','Squat Analyzer','Shoulder Press','Bicep Curler','Push Ups','Calorie Counter','Leaderboard','Recommendation','Music'))
     st.sidebar.markdown('Made by Thunderflow for DataHack 2.0')
 
     if option=="Dashboard":
@@ -272,6 +273,8 @@ def main():
         bicep_curler()
     elif option=="Push Ups":
         push_ups()
+    elif option=="Detection and Rep Counting":
+        detection()
     elif option=="Leaderboard":
         leaderboard()
     elif option=="Calorie Counter":
